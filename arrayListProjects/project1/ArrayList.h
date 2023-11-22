@@ -18,10 +18,33 @@ public:
         arr = new T[capacity];
     }
 
-    ~ArrayList() {
-        delete[] arr;  // Deallocate memory for the outer array
+    ArrayList(const ArrayList &other){
+        count = other.count;
+        capacity = other.capacity;
+        arr = new T[capacity];
+        for(int i = 0; i<count; i++){
+            this->arr[i] = other.arr[i];
+        }
+    }
+    
+    ArrayList& operator=(const ArrayList& other) {
+        if (this != &other) { 
+            delete[] arr;
+
+            count = other.count;
+            capacity = other.capacity;
+
+            arr = new T[capacity];
+            for (int i = 0; i < count; i++) {
+                arr[i] = other.arr[i];
+            }
+        }
+        return *this;
     }
 
+    ~ArrayList() {
+        delete[] arr;  
+    }
 
     void inflate() {
         if (count == capacity) {
