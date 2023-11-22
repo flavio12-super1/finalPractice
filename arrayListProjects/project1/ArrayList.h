@@ -18,13 +18,10 @@ public:
         arr = new T[capacity];
     }
 
-    // ~ArrayList() {
-    //     for (int i = 0; i < count; i++){
-    //         for (int j = 0; j < arr[i].count; j++){
-    //         //do stuff
-    //         }      
-    //     }
-    // }
+    ~ArrayList() {
+        delete[] arr;  // Deallocate memory for the outer array
+    }
+
 
     void inflate() {
         if (count == capacity) {
