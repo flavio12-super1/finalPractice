@@ -15,7 +15,7 @@ int main() {
     // Append some elements to the inner ArrayList<int>
     myIntArrayList.arr[0].append(42);
     myIntArrayList.arr[0].append(10);
-    myIntArrayList.arr[2].append(69);
+    myIntArrayList.arr[2].append(100);
 
 
     // Access elements
