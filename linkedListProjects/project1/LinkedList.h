@@ -43,16 +43,9 @@ class LinkedList{
                 front = new Link<T>(value);
                 back = front;
             }else{
-
-                if (front == back){
-                    Link<T> *temp = new Link<T>(value);
-                    back = temp;
-                    front->next = back;
-                }else{
-                    Link<T> *temp = new Link<T>(value);
-                    back->next = temp;
-                    back = temp;
-                }
+                Link<T> *temp = new Link<T>(value);
+                back->next = temp;
+                back = temp;
             }
             count ++;
         }
