@@ -11,6 +11,8 @@ int main(){
     tree.append(5);
     tree.append(3);
     tree.append(8);
+    tree.append(4);
+    tree.append(9);
 
     tree.drawTree();
 
