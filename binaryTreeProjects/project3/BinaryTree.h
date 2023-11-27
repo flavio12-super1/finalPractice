@@ -36,39 +36,74 @@ class BinaryTree{
             root = nullptr;
         }
 
-        Node* insert_helper(Node *root, Node *temp){
-            // if (temp->data < root->data ){ 
-            //     if (!root->left) return root->left = temp;
-            //     insert_helper(root->left, temp);
-            // }else{
-            //     if (!root->right) return root->right = temp;
-            //     insert_helper(root->right, temp);
-            // }
-            // return temp;
-            return (temp->data < root->data) ? (!root->left ? root->left = temp : insert_helper(root->left, temp))
-                : (!root->right ? root->right = temp : insert_helper(root->right, temp));
+        // Node* insert_helper(Node *&root, Node *temp){
+        //     return (root ? (temp->data < root->data) ? (!root->left ? root->left = temp : insert_helper(root->left, temp))
+        //         : (!root->right ? root->right = temp : insert_helper(root->right, temp)) : root = temp);
+        // }
+        
+        // void append(int value){
+        //     Node *temp = new Node(value);
+        //     insert_helper(root, temp);
+        // }
+
+        
+        Node* insert_helper(Node*& root, Node* temp) {
+            return (root ? (temp->data < root->data) ? (!root->left ? root->left = temp : insert_helper(root->left, temp))
+                : (!root->right ? root->right = temp : insert_helper(root->right, temp)) : root = temp);
         }
 
-        void append(int value){
-            if (root == nullptr){
-                root = new Node(value);
-            }else{
-                Node *temp = new Node(value);
-                insert_helper(root, temp);
+        void append(int value) {
+            insert_helper(root, new Node(value));
+        }
+
+        // void drawTree_helper(){
+        //     std::cout << root->data << std::endl;
+        //     std::cout << root->left->data << std::endl;
+        //     std::cout << root->right->data << std::endl;
+        //     std::cout << root->left->right->data << std::endl;
+        //     std::cout << root->right->right->data << std::endl;
+        // }
+
+        // void drawTree(){
+        //     drawTree_helper();
+        // }
+            // A function to display the tree graphically
+    void displayTree(Node *r, int level, int direction)
+    {
+        // Don't worry about this function, just use it
+        if (r != NULL && level < 4)
+        {
+            displayTree(r->right, level + 1, 1);
+
+            for (int i = 0; i < level - 1; i++)
+            {
+                std::cout << "   ";
             }
-        }
+            if (level > 0)
+            {
+                if (direction == 1)
+                {
+                    std::cout << " /--";
+                }
+                else
+                {
+                    std::cout << " \\--";
+                }
+            }
 
-        void drawTree_helper(){
-            std::cout << root->data << std::endl;
-            std::cout << root->left->data << std::endl;
-            std::cout << root->right->data << std::endl;
-            std::cout << root->left->right->data << std::endl;
-            std::cout << root->right->right->data << std::endl;
-        }
+            std::cout << r->data;
 
-        void drawTree(){
-            drawTree_helper();
+            std::cout << std::endl;
+
+            displayTree(r->left, level + 1, -1);
+            level++;
         }
+    }
+
+    void drawTree()
+    {
+        displayTree(root, 0, 0);
+    }
 };
 
 #endif
